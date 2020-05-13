@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "library_loan")
 @Builder(builderClassName = "Builder")
-public class Loan implements Serializable {
+public class LibraryLoan implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
