@@ -32,10 +32,13 @@ public class LibraryLoan implements Serializable {
 
     private String loanTime;
 
+    private Long SpecificIDUser;
+
     public static LibraryLoan to(LibraryLoanDTO libraryLoanDTO) {
         return LibraryLoan.builder()
                 .id(libraryLoanDTO.getId())
                 .loanTime(libraryLoanDTO.getLoanTime())
+                .SpecificIDUser(libraryLoanDTO.getSpecificIDUser())
                 .build();
     }
 }

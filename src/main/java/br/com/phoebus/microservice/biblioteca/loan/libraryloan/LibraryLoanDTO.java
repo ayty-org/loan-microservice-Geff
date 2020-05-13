@@ -26,10 +26,14 @@ public class LibraryLoanDTO {
 
     private LibraryUserDTO libraryUserDTO;
 
+    private Long SpecificIDUser;
+
     public static LibraryLoanDTO from(LibraryLoan libraryLoan) {
         return LibraryLoanDTO.builder()
                 .id(libraryLoan.getId())
-                .loanTime(libraryLoan.getLoanTime()).build();
+                .loanTime(libraryLoan.getLoanTime())
+                .SpecificIDUser(libraryLoan.getSpecificIDUser())
+                .build();
     }
 
     public static List<LibraryLoanDTO> from(List<LibraryLoan> libraryLoanList) {
