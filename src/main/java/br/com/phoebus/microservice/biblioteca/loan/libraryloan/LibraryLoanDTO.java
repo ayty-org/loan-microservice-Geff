@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class LibraryLoanDTO {
 
     private LibraryUserDTO libraryUserDTO;
 
+    @NotNull
     private Long SpecificIDUser;
 
     public static LibraryLoanDTO from(LibraryLoan libraryLoan) {

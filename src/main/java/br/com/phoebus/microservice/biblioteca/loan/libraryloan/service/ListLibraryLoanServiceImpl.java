@@ -1,12 +1,11 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.service;
 
 
+import br.com.phoebus.microservice.biblioteca.loan.exceptions.LoanWithoutUserException;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanRepository;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +15,19 @@ import java.util.List;
 public class ListLibraryLoanServiceImpl implements ListLibraryLoanService {
 
     private final LibraryLoanRepository libraryLoanRepository;
+    private final UserAndBookService userAndBookService;
 
 
     @Override
     public List<LibraryLoanDTO> listLibraryLoan() {
-        return LibraryLoanDTO.from(libraryLoanRepository.findAll());
+        List<LibraryLoanDTO> libraryLoanDTOList = LibraryLoanDTO.from(libraryLoanRepository.findAll());
+        for (LibraryLoanDTO libraryLoanDto : libraryLoanDTOList) {
+            try {
+                libraryLoanDto.setLibraryUserDTO(userAndBookService.findUserOfLoan(libraryLoanDto.getSpecificIDUser()));
+            } catch (FeignException.NotFound e) {
+                throw new LoanWithoutUserException();
+            }
+        }
+        return libraryLoanDTOList;
     }
 }
