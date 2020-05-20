@@ -1,6 +1,7 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.service;
 
 
+import br.com.phoebus.microservice.biblioteca.loan.exceptions.LoanWithoutBookException;
 import br.com.phoebus.microservice.biblioteca.loan.exceptions.LoanWithoutUserException;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanRepository;
@@ -21,11 +22,16 @@ public class ListLibraryLoanServiceImpl implements ListLibraryLoanService {
     @Override
     public List<LibraryLoanDTO> listLibraryLoan() {
         List<LibraryLoanDTO> libraryLoanDTOList = LibraryLoanDTO.from(libraryLoanRepository.findAll());
-        for (LibraryLoanDTO libraryLoanDto : libraryLoanDTOList) {
+        for (LibraryLoanDTO libraryLoanDTO : libraryLoanDTOList) {
             try {
-                libraryLoanDto.setLibraryUserDTO(userAndBookService.findUserOfLoan(libraryLoanDto.getSpecificIDUser()));
+                libraryLoanDTO.setLibraryUserDTO(userAndBookService.findUserOfLoan(libraryLoanDTO.getSpecificIDUser()));
             } catch (FeignException.NotFound e) {
                 throw new LoanWithoutUserException();
+            }
+            try {
+                libraryLoanDTO.setLibraryBookDTOList(userAndBookService.findAllBookOfLoan(libraryLoanDTO.getId()));
+            } catch (FeignException.NotFound e) {
+                throw new LoanWithoutBookException();
             }
         }
         return libraryLoanDTOList;

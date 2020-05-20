@@ -1,5 +1,6 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.service;
 
+import br.com.phoebus.microservice.biblioteca.loan.exceptions.LoanWithoutBookException;
 import br.com.phoebus.microservice.biblioteca.loan.exceptions.LoanWithoutUserException;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanRepository;
@@ -27,6 +28,11 @@ public class ListPageLibraryLoanServiceImpl implements ListPageLibraryLoanServic
                 libraryLoanDTO.setLibraryUserDTO(userAndBookService.findUserOfLoan(libraryLoanDTO.getSpecificIDUser()));
             } catch (FeignException.NotFound e) {
                 throw new LoanWithoutUserException();
+            }
+            try {
+                libraryLoanDTO.setLibraryBookDTOList(userAndBookService.findAllBookOfLoan(libraryLoanDTO.getId()));
+            } catch (FeignException.NotFound e) {
+                throw new LoanWithoutBookException();
             }
         }
 

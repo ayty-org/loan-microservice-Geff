@@ -21,7 +21,7 @@ public class LibraryBookDTO {
     private Long id;
 
     @NotNull
-    private boolean borrewed;
+    private boolean borrowed;
 
     @NotEmpty(message = "Title may not be empty")
     private String title;
@@ -38,5 +38,7 @@ public class LibraryBookDTO {
 
     @Min(1300)
     private int year;
+
+    private Long specificIDLoan;
 
 }

@@ -17,7 +17,7 @@ public class DeleteLibraryLoanServiceImpl implements DeleteLibraryLoanService{
     @Override//Ver se existe livros ainda em emprestimo nesse emprestimo, caso tenha, não excluir.
     public void deleteLibraryLoan(Long id) {
         LibraryLoan libraryLoan = libraryLoanRepository.findById(id).orElseThrow(LibraryLoanNotFoundException::new);
-        userAndBookService.editSpecifId(libraryLoan.getSpecificIDUser(), null);
+        userAndBookService.editUserSpecifId(libraryLoan.getSpecificIDUser(), null);
         libraryLoanRepository.deleteById(id);
     }
 }

@@ -28,8 +28,8 @@ public class EditLibraryLoanServiceImpl implements EditLibaryLoanService {
         } catch (FeignException.NotFound e) {
             throw new LibraryLoanUserNotFoundException();
         }
-        String specificId = "000"+id;
-        userAndBookService.editSpecifId(libraryLoanDTO.getSpecificIDUser(),specificId);
+        String specificIDLoan = "000"+id;
+        userAndBookService.editUserSpecifId(libraryLoanDTO.getSpecificIDUser(),specificIDLoan);
         libraryLoanRepository.save(libraryLoan);
     }
 }

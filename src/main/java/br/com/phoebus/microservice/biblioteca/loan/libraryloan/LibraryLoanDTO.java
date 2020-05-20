@@ -8,8 +8,11 @@ import lombok.Setter;
 import org.springframework.data.domain.Page;
 
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,14 +30,16 @@ public class LibraryLoanDTO {
 
     private LibraryUserDTO libraryUserDTO;
 
+    private List<LibraryBookDTO> libraryBookDTOList = new ArrayList<>();
+
     @NotNull
-    private Long SpecificIDUser;
+    private Long specificIDUser;
 
     public static LibraryLoanDTO from(LibraryLoan libraryLoan) {
         return LibraryLoanDTO.builder()
                 .id(libraryLoan.getId())
                 .loanTime(libraryLoan.getLoanTime())
-                .SpecificIDUser(libraryLoan.getSpecificIDUser())
+                .specificIDUser(libraryLoan.getSpecificIDUser())
                 .build();
     }
 

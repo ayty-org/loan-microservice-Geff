@@ -64,7 +64,7 @@ public class LibraryLoanControllerV1 {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    void saveLibraryLoan(@Valid @RequestBody LibraryLoanDTO libraryLoanDTO) {
-        saveLibraryLoanService.saveLibraryBook(libraryLoanDTO);
+    void saveLibraryLoan(@Valid @RequestBody LibraryLoanDTO libraryLoanDTO, @RequestParam("idsBooks") List<Long> idsBooks) {
+        saveLibraryLoanService.saveLibraryBook(libraryLoanDTO, idsBooks);
     }
 }

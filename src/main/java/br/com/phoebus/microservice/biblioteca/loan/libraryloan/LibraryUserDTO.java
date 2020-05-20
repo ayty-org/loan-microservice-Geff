@@ -30,4 +30,6 @@ public class LibraryUserDTO {
     @Size(min = 8)
     private String telephone;
 
+    private Long specificIDLoan;
+
 }
