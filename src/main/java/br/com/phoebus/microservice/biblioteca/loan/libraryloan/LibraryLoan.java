@@ -41,4 +41,16 @@ public class LibraryLoan implements Serializable {
                 .SpecificIDUser(libraryLoanDTO.getSpecificIDUser())
                 .build();
     }
+
+    public static LibraryLoan to(LibraryLoanEditDTO libraryLoanDTO) {
+        return LibraryLoan.builder()
+                .id(libraryLoanDTO.getId())
+                .loanTime(libraryLoanDTO.getLoanTime())
+                .SpecificIDUser(libraryLoanDTO.getSpecificIDUser())
+                .build();
+    }
+
+    public String getSpecificIdLoan () { //metodo para usar após a conversa com kawe sobre specific id
+        return "000"+getId();
+    }
 }

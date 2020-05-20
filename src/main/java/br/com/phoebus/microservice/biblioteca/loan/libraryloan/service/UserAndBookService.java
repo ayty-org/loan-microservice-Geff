@@ -29,4 +29,7 @@ public interface UserAndBookService {
     @PutMapping(value = "v1/libraryBook/changeStatus/{id}", params = "idsBooks")
     void changeStatus(@PathVariable("id") Long id, @RequestParam("idsBooks") List<Long> idsBooks);
 
+    @GetMapping(value = "v1/libraryBook/verifyJustExist", params = "idsBooks")
+    void verifyJustExist(@RequestParam("idsBooks") List<Long> idsBooks);
+
 }

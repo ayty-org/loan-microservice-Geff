@@ -1,6 +1,7 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.v1;
 
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
+import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanEditDTO;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.DeleteLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.EditLibaryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.GetLibraryLoanService;
@@ -43,8 +44,11 @@ public class LibraryLoanControllerV1 {
 
     @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void editLibraryLoan(@Valid @PathVariable(value = "id") Long id, @RequestBody LibraryLoanDTO libraryLoanDTO) {
-        editLibaryLoanService.editLibraryLoan(id, libraryLoanDTO);
+    void editLibraryLoan(@PathVariable(value = "id") Long id,
+                         @RequestBody LibraryLoanDTO libraryLoanDTO,
+                         @RequestParam List<Long> idsBooks) {
+        System.out.println(id);
+        editLibaryLoanService.editLibraryLoan(id, libraryLoanDTO, idsBooks);
     }
 
     @GetMapping(value = "/{id}")
