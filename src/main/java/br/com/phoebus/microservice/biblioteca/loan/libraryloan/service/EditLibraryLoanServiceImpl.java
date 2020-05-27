@@ -1,6 +1,5 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.service;
 
-import br.com.phoebus.microservice.biblioteca.loan.exceptions.LibraryLoanBookAlreadyBorrowedException;
 import br.com.phoebus.microservice.biblioteca.loan.exceptions.LibraryLoanBookNotFoundException;
 import br.com.phoebus.microservice.biblioteca.loan.exceptions.LibraryLoanNotFoundException;
 import br.com.phoebus.microservice.biblioteca.loan.exceptions.LibraryLoanUserNotFoundException;
@@ -15,15 +14,15 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class EditLibraryLoanServiceImpl implements EditLibaryLoanService {
+public class EditLibraryLoanServiceImpl implements EditLibraryLoanService {
 
     private final LibraryLoanRepository libraryLoanRepository;
     private final UserAndBookService userAndBookService;
 
     @Override//Verificar se o livro e usuário passado existem no outro micro serviço
-    public void editLibraryLoan(Long id, LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks) {
+    public void editLibraryLoan(Long idEdit, LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks) {
 
-        LibraryLoan libraryLoan = libraryLoanRepository.findById(id).orElseThrow(LibraryLoanNotFoundException::new);
+        LibraryLoan libraryLoan = libraryLoanRepository.findById(idEdit).orElseThrow(LibraryLoanNotFoundException::new);
 
         libraryLoan.setLoanTime(libraryLoanDTO.getLoanTime());
 
@@ -41,9 +40,9 @@ public class EditLibraryLoanServiceImpl implements EditLibaryLoanService {
         } catch (FeignException.NotFound e) {
             throw new LibraryLoanBookNotFoundException();
         }
-        userAndBookService.changeStatus(id, idsBooks);
+        userAndBookService.changeStatus(idEdit, idsBooks);
 
-        String specificIDLoan = "000" + id;
+        String specificIDLoan = "000" + idEdit;
         userAndBookService.editUserSpecifId(libraryLoanDTO.getSpecificIDUser(), specificIDLoan);
         libraryLoanRepository.save(libraryLoan);
     }

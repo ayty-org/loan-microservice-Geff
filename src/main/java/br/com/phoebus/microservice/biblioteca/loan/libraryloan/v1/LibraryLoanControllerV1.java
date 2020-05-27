@@ -1,9 +1,8 @@
 package br.com.phoebus.microservice.biblioteca.loan.libraryloan.v1;
 
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
-import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanEditDTO;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.DeleteLibraryLoanService;
-import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.EditLibaryLoanService;
+import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.EditLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.GetLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.ListLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.ListPageLibraryLoanService;
@@ -30,7 +29,7 @@ import java.util.List;
 @RequestMapping(value = "v1/libraryLoan")
 public class LibraryLoanControllerV1 {
     private final DeleteLibraryLoanService deleteLibraryLoanService;
-    private final EditLibaryLoanService editLibaryLoanService;
+    private final EditLibraryLoanService editLibraryLoanService;
     private final GetLibraryLoanService getLibraryLoanService;
     private final ListLibraryLoanService listLibraryLoanService;
     private final ListPageLibraryLoanService listPageLibraryLoanService;
@@ -48,7 +47,7 @@ public class LibraryLoanControllerV1 {
                          @RequestBody LibraryLoanDTO libraryLoanDTO,
                          @RequestParam List<Long> idsBooks) {
         System.out.println(id);
-        editLibaryLoanService.editLibraryLoan(id, libraryLoanDTO, idsBooks);
+        editLibraryLoanService.editLibraryLoan(id, libraryLoanDTO, idsBooks);
     }
 
     @GetMapping(value = "/{id}")

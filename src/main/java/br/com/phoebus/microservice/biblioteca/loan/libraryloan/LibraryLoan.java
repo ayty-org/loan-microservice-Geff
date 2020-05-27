@@ -32,25 +32,13 @@ public class LibraryLoan implements Serializable {
 
     private String loanTime;
 
-    private Long SpecificIDUser;
+    private Long specificIDUser;
 
     public static LibraryLoan to(LibraryLoanDTO libraryLoanDTO) {
         return LibraryLoan.builder()
                 .id(libraryLoanDTO.getId())
                 .loanTime(libraryLoanDTO.getLoanTime())
-                .SpecificIDUser(libraryLoanDTO.getSpecificIDUser())
+                .specificIDUser(libraryLoanDTO.getSpecificIDUser())
                 .build();
-    }
-
-    public static LibraryLoan to(LibraryLoanEditDTO libraryLoanDTO) {
-        return LibraryLoan.builder()
-                .id(libraryLoanDTO.getId())
-                .loanTime(libraryLoanDTO.getLoanTime())
-                .SpecificIDUser(libraryLoanDTO.getSpecificIDUser())
-                .build();
-    }
-
-    public String getSpecificIdLoan () { //metodo para usar após a conversa com kawe sobre specific id
-        return "000"+getId();
     }
 }
