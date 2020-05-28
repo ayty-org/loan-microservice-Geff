@@ -24,11 +24,6 @@ public class EditLibraryLoanServiceImpl implements EditLibraryLoanService {
 
         LibraryLoan libraryLoan = libraryLoanRepository.findById(idEdit).orElseThrow(LibraryLoanNotFoundException::new);
 
-        libraryLoan.setLoanTime(libraryLoanDTO.getLoanTime());
-
-        userAndBookService.editUserSpecifId(libraryLoan.getSpecificIDUser(), "null"); //caso troque o user aqui muda
-        libraryLoan.setSpecificIDUser(libraryLoanDTO.getSpecificIDUser());
-
         try {
             userAndBookService.findUserOfLoan(libraryLoanDTO.getSpecificIDUser());
         } catch (FeignException.NotFound e) {
@@ -40,6 +35,11 @@ public class EditLibraryLoanServiceImpl implements EditLibraryLoanService {
         } catch (FeignException.NotFound e) {
             throw new LibraryLoanBookNotFoundException();
         }
+
+        libraryLoan.setLoanTime(libraryLoanDTO.getLoanTime());
+        userAndBookService.editUserSpecifId(libraryLoan.getSpecificIDUser(), "null"); //caso troque o user aqui muda
+        libraryLoan.setSpecificIDUser(libraryLoanDTO.getSpecificIDUser());
+
         userAndBookService.changeStatus(idEdit, idsBooks);
 
         String specificIDLoan = "000" + idEdit;

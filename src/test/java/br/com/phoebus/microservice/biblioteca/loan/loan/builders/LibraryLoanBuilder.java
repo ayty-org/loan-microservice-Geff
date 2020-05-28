@@ -7,7 +7,7 @@ public class LibraryLoanBuilder {
     public static LibraryLoan.Builder createLibraryLoan() {
 
         return LibraryLoan.builder()
-                .id(2L)
+                .id(1L)
                 .loanTime("2 dias").specificIDUser(2L);
     }
 }

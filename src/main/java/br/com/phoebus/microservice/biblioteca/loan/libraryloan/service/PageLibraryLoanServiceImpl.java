@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class ListPageLibraryLoanServiceImpl implements ListPageLibraryLoanService {
+public class PageLibraryLoanServiceImpl implements PageLibraryLoanService {
 
     private final LibraryLoanRepository libraryLoanRepository;
     private final UserAndBookService userAndBookService;

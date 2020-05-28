@@ -5,7 +5,7 @@ import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.DeleteLib
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.EditLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.GetLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.ListLibraryLoanService;
-import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.ListPageLibraryLoanService;
+import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.PageLibraryLoanService;
 import br.com.phoebus.microservice.biblioteca.loan.libraryloan.service.SaveLibraryLoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,7 +32,7 @@ public class LibraryLoanControllerV1 {
     private final EditLibraryLoanService editLibraryLoanService;
     private final GetLibraryLoanService getLibraryLoanService;
     private final ListLibraryLoanService listLibraryLoanService;
-    private final ListPageLibraryLoanService listPageLibraryLoanService;
+    private final PageLibraryLoanService pageLibraryLoanService;
     private final SaveLibraryLoanService saveLibraryLoanService;
 
     @DeleteMapping(value = "/{id}")
@@ -62,7 +62,7 @@ public class LibraryLoanControllerV1 {
 
     @GetMapping(params = {"page", "size"})
     Page<LibraryLoanDTO> listOnPageLibraryLoan(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        return listPageLibraryLoanService.listPageLibraryLoan(page, size);
+        return pageLibraryLoanService.listPageLibraryLoan(page, size);
     }
 
     @PostMapping

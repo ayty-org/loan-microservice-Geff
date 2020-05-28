@@ -24,9 +24,9 @@ public class GetLibraryLoanServiceImpl implements GetLibraryLoanService {
         } catch (FeignException.NotFound e) {
             throw new LoanWithoutUserException();
         }
-        try {
-            libraryLoanDTO.setLibraryBookDTOList(userAndBookService.findAllBookOfLoan(id));
-        } catch (FeignException.NotFound e) {
+        libraryLoanDTO.setLibraryBookDTOList(userAndBookService.findAllBookOfLoan(id));
+
+        if(libraryLoanDTO.getLibraryBookDTOList().size() == 0) {
             throw new LoanWithoutBookException();
         }
         return libraryLoanDTO;

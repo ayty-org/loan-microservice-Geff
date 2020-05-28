@@ -4,7 +4,7 @@ import br.com.phoebus.microservice.biblioteca.loan.libraryloan.LibraryLoanDTO;
 import org.springframework.data.domain.Page;
 
 @FunctionalInterface
-public interface ListPageLibraryLoanService {
+public interface PageLibraryLoanService {
 
     Page<LibraryLoanDTO> listPageLibraryLoan(Integer page, Integer size);
 }
