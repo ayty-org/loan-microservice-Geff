@@ -3,17 +3,13 @@ package br.com.phoebus.microservice.biblioteca.loan.libraryloan;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Getter
-@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder(builderClassName = "Builder")
 public class LibraryUserDTO {
 
