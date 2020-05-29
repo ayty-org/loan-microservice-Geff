@@ -19,7 +19,7 @@ public class SaveLibraryLoanServiceImpl implements SaveLibraryLoanService {
     private final UserAndBookService userAndBookService;
 
     @Override
-    public void saveLibraryBook(LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks) {
+    public void saveLibraryLoan(LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks) {
 
         try {
             userAndBookService.findUserOfLoan(libraryLoanDTO.getSpecificIDUser());

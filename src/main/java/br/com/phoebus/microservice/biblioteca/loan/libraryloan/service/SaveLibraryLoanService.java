@@ -7,5 +7,5 @@ import java.util.List;
 @FunctionalInterface
 public interface SaveLibraryLoanService {
 
-    void saveLibraryBook(LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks);
+    void saveLibraryLoan(LibraryLoanDTO libraryLoanDTO, List<Long> idsBooks);
 }

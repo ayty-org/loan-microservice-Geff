@@ -44,9 +44,8 @@ public class LibraryLoanControllerV1 {
     @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void editLibraryLoan(@PathVariable(value = "id") Long id,
-                         @RequestBody LibraryLoanDTO libraryLoanDTO,
+                         @Valid @RequestBody LibraryLoanDTO libraryLoanDTO,
                          @RequestParam List<Long> idsBooks) {
-        System.out.println(id);
         editLibraryLoanService.editLibraryLoan(id, libraryLoanDTO, idsBooks);
     }
 
@@ -68,6 +67,6 @@ public class LibraryLoanControllerV1 {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     void saveLibraryLoan(@Valid @RequestBody LibraryLoanDTO libraryLoanDTO, @RequestParam("idsBooks") List<Long> idsBooks) {
-        saveLibraryLoanService.saveLibraryBook(libraryLoanDTO, idsBooks);
+        saveLibraryLoanService.saveLibraryLoan(libraryLoanDTO, idsBooks);
     }
 }
